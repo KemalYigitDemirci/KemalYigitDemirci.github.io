@@ -1,0 +1,54 @@
+---
+layout: page
+permalink: /library/
+title: "Kütüphane"
+title_tr: "Kütüphane"
+title_en: "Library"
+nav: library
+rail_tr: "Kayıt"
+rail_en: "Log"
+standfirst_tr: "Okuduklarım ve izlediklerim. İnceleme değil, kayıt: tek satır not ve beşlik bir puan."
+standfirst_en: "What I read and watch. Not reviews — a log: one line and a mark out of five."
+---
+
+{% assign lib = site.data.library %}{% unless lib %}{% assign lib = "" | split: "," %}{% endunless %}
+{% assign shelf = lib | sort: "date" | reverse %}
+
+{% if shelf.size > 0 %}
+{% assign kinds = shelf | map: "kind" | uniq | sort %}
+
+<div class="filters" role="group" aria-label="Tür / Kind">
+  <button type="button" data-filter="all" aria-pressed="true"><span class="tr">Hepsi</span><span class="en">All</span> ({{ shelf.size }})</button>
+  {% for k in kinds %}
+  {% assign n = shelf | where: "kind", k %}
+  <button type="button" data-filter="{{ k | slugify }}" aria-pressed="false">{{ k }} ({{ n.size }})</button>
+  {% endfor %}
+</div>
+
+<ul class="shelf">
+  {% for it in shelf %}
+  <li class="item" data-kind="{{ it.kind | slugify }}">
+    <span class="kind">{{ it.kind }}</span>
+    <span>
+      <h3>{% if it.link %}<a href="{{ it.link }}">{{ it.title }}</a>{% else %}{{ it.title }}{% endif %}</h3>
+      <span class="by">{{ it.by }}{% if it.year %} · {{ it.year }}{% endif %}</span>
+      {% if it.note %}<p class="note">{{ it.note }}</p>{% endif %}
+    </span>
+    <span class="stamp">{{ it.date }}</span>
+    <span class="rating" aria-label="{{ it.rating }}/5">{% for i in (1..5) %}{% if i <= it.rating %}■{% else %}<span class="off">■</span>{% endif %}{% endfor %}</span>
+  </li>
+  {% endfor %}
+</ul>
+
+{% else %}
+<div class="empty">
+  <h3><span class="tr">Burası henüz boş.</span><span class="en">Nothing logged yet.</span></h3>
+  <p><span class="tr">İlk kaydı eklemek için <code>_data/library.yml</code> dosyasını aç; içinde hazır bir örnek blok yorum satırı olarak duruyor.</span>
+     <span class="en">Open <code>_data/library.yml</code> to add the first entry — a ready-made block is waiting there, commented out.</span></p>
+</div>
+{% endif %}
+
+<p class="sec-note" style="margin-top:24px">
+  <span class="tr">Türleri sen belirliyorsun; filtre düğmeleri listeden kendiliğinden üretiliyor.</span>
+  <span class="en">You choose the kinds; the filter buttons build themselves from the list.</span>
+</p>

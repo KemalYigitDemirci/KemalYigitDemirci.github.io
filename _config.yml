@@ -1,0 +1,62 @@
+# ─────────────────────────────────────────────────────────────
+#  SITE SETTINGS — edit the lines marked  <-- CHANGE ME
+# ─────────────────────────────────────────────────────────────
+
+title: "Kemal Yiğit Demirci"
+subtitle: "Fizik, yazılım ve okuduklarım"
+description: >-
+  Kemal Yiğit Demirci — fizik mühendisliği ve yazılım üzerine yazılar,
+  projeler ve okunan/izlenen kayıtları.
+
+author:
+  name: "Kemal Yiğit Demirci"
+  email: "kemaldemirci@hacettepe.edu.tr"        # <-- CHANGE ME (or delete the line)
+  location: "Türkiye"                            # <-- istersen şehir yaz
+  short: "K. Y. Demirci"                            # üst bardaki kısa ad
+
+# Your GitHub username. The Projects page pulls your public repos from here.
+github_username: "KemalYigitDemirci"
+
+# Where the site will live.
+# Repo named  <username>.github.io   →  url: "https://<username>.github.io"   baseurl: ""
+# Repo named  anything-else          →  url: "https://<username>.github.io"   baseurl: "/anything-else"
+url: "https://kemalyigitdemirci.github.io"
+baseurl: ""                                      # <-- CHANGE ME if needed
+
+social:
+  github: "KemalYigitDemirci"
+  # twitter: "handle"
+  # linkedin: "handle"
+  # scholar: "https://scholar.google.com/citations?user=..."
+
+# ── Build ────────────────────────────────────────────────────
+permalink: /posts/:title/
+timezone: Europe/Istanbul
+lang: tr
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  math_engine: null          # KaTeX renders math in the browser
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+feed:
+  path: feed.xml
+
+defaults:
+  - scope: { path: "", type: "posts" }
+    values:
+      layout: "post"
+      lang: "tr"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - .jekyll-cache

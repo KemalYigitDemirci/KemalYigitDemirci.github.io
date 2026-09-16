@@ -1,0 +1,42 @@
+---
+layout: page
+permalink: /projects/
+title: "Projeler"
+title_tr: "Projeler"
+title_en: "Projects"
+nav: projects
+rail_tr: "Portföy"
+rail_en: "Portfolio"
+standfirst_tr: "GitHub'daki herkese açık repolar, en son çalışılandan geriye doğru. Liste canlı çekiliyor, elle güncellenmiyor."
+standfirst_en: "Public repositories on GitHub, most recently touched first. The list is pulled live, never hand-maintained."
+---
+
+{% assign pinned = site.data.projects %}
+{% if pinned and pinned.size > 0 %}
+<h2 class="sec" style="margin-bottom:14px"><span class="tr">Öne çıkanlar</span><span class="en">Pinned</span></h2>
+<div class="projects" style="margin-bottom:34px">
+  {% for p in pinned %}
+  <a class="proj" href="{{ p.url }}">
+    <div class="proj-top">
+      <h3>{{ p.name }}</h3>
+      {% if p.year %}<span class="chip">{{ p.year }}</span>{% endif %}
+    </div>
+    <p>{{ p.description }}</p>
+    <div class="proj-meta">
+      {% if p.language %}<span><span class="dot"></span>{{ p.language }}</span>{% endif %}
+      {% if p.status %}<span>{{ p.status }}</span>{% endif %}
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% endif %}
+
+<h2 class="sec" style="margin-bottom:6px">github.com/{{ site.github_username }}</h2>
+<p class="sec-note">
+  <span class="tr">Fork'lar ve arşivlenmiş repolar listelenmiyor.</span>
+  <span class="en">Forks and archived repositories are left out.</span>
+</p>
+
+<div id="repos" data-user="{{ site.github_username }}">
+  <p class="loading">github.com/{{ site.github_username }} …</p>
+</div>

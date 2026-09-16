@@ -1,0 +1,136 @@
+---
+layout: default
+title: "Kemal Yiğit Demirci"
+nav: home
+---
+
+{% assign lib = site.data.library %}{% unless lib %}{% assign lib = "" | split: "," %}{% endunless %}
+{% assign shelf = lib | sort: "date" | reverse %}
+
+<section class="masthead">
+  <div class="wrap">
+    <div class="masthead-grid">
+      <div>
+        <h1 class="name">{{ site.author.name }}</h1>
+        <p class="role">
+          <span class="tr">Fizik mühendisliği öğrencisiyim, yazılımla uğraşıyorum. Burada yazdıklarım, yaptığım projeler ve okuyup izlediklerimin kaydı duruyor.</span>
+          <span class="en">Physics engineering student, working with software. This is where my writing, my projects and a log of what I read and watch live.</span>
+        </p>
+      </div>
+
+      <div class="facts">
+        <dl>
+          <div>
+            <dt><span class="tr">Konum</span><span class="en">Location</span></dt>
+            <dd>{{ site.author.location }}</dd>
+          </div>
+          <div>
+            <dt>GitHub</dt>
+            <dd><a href="https://github.com/{{ site.github_username }}">@{{ site.github_username }}</a></dd>
+          </div>
+          {% if site.author.email %}
+          <div>
+            <dt><span class="tr">İletişim</span><span class="en">Contact</span></dt>
+            <dd><a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></dd>
+          </div>
+          {% endif %}
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Writing -->
+<section class="band">
+  <div class="wrap">
+    <div class="shell">
+      <aside class="rail"><p class="meta"><span class="tr">Yazılar</span><span class="en">Writing</span><b>{{ site.posts.size }}</b></p></aside>
+      <div>
+        <div class="band-head">
+          <h2 class="sec"><span class="tr">Son yazılar</span><span class="en">Latest posts</span></h2>
+          <a class="more" href="/posts/"><span class="tr">Hepsi</span><span class="en">All posts</span> →</a>
+        </div>
+
+        {% if site.posts.size > 0 %}
+        <ul class="entries">
+          {% for post in site.posts limit: 5 %}
+          <li class="entry">
+            <a href="{{ post.url }}">
+              <span class="when">{{ post.date | date: "%d.%m.%Y" }}</span>
+              <span>
+                <h3>{{ post.title }}</h3>
+                {% if post.standfirst %}<p>{{ post.standfirst | strip_html | truncate: 140 }}</p>{% endif %}
+              </span>
+              <span class="marks"><span class="chip lang">{{ post.lang | upcase }}</span></span>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <div class="empty">
+          <h3><span class="tr">Henüz yazı yok.</span><span class="en">No posts yet.</span></h3>
+          <p><span class="tr"><code>_posts/</code> klasörüne <code>YYYY-AA-GG-baslik.md</code> adında bir dosya koy, burada görünsün.</span>
+             <span class="en">Drop a <code>YYYY-MM-DD-title.md</code> file into <code>_posts/</code> and it shows up here.</span></p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects: live from GitHub -->
+<section class="band">
+  <div class="wrap">
+    <div class="shell">
+      <aside class="rail"><p class="meta"><span class="tr">Projeler</span><span class="en">Projects</span><b>GitHub</b></p></aside>
+      <div>
+        <div class="band-head">
+          <h2 class="sec"><span class="tr">Son çalıştıklarım</span><span class="en">Recently worked on</span></h2>
+          <a class="more" href="/projects/"><span class="tr">Tüm projeler</span><span class="en">All projects</span> →</a>
+        </div>
+
+        <div id="repos" data-user="{{ site.github_username }}" data-limit="4">
+          <p class="loading">github.com/{{ site.github_username }} …</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Library -->
+<section class="band">
+  <div class="wrap">
+    <div class="shell">
+      <aside class="rail"><p class="meta"><span class="tr">Kütüphane</span><span class="en">Library</span><b>{{ shelf.size | default: 0 }}</b></p></aside>
+      <div>
+        <div class="band-head">
+          <h2 class="sec"><span class="tr">Okuduklarım, izlediklerim</span><span class="en">Read &amp; watched</span></h2>
+          <a class="more" href="/library/"><span class="tr">Tamamı</span><span class="en">Everything</span> →</a>
+        </div>
+
+        {% if shelf.size > 0 %}
+        <ul class="shelf">
+          {% for it in shelf limit: 4 %}
+          <li class="item">
+            <span class="kind">{{ it.kind }}</span>
+            <span>
+              <h3>{% if it.link %}<a href="{{ it.link }}">{{ it.title }}</a>{% else %}{{ it.title }}{% endif %}</h3>
+              <span class="by">{{ it.by }}</span>
+              {% if it.note %}<p class="note">{{ it.note }}</p>{% endif %}
+            </span>
+            <span class="stamp">{{ it.date }}</span>
+            <span class="rating" aria-label="{{ it.rating }}/5">{% for i in (1..5) %}{% if i <= it.rating %}■{% else %}<span class="off">■</span>{% endif %}{% endfor %}</span>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <div class="empty">
+          <h3><span class="tr">Burası henüz boş.</span><span class="en">Nothing logged yet.</span></h3>
+          <p><span class="tr">Kitap, film, dizi, makale — <code>_data/library.yml</code> dosyasına ekledikçe burada birikecek.</span>
+             <span class="en">Books, films, series, papers — they collect here as you add them to <code>_data/library.yml</code>.</span></p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4><span class="tr">Bölümler</span><span class="en">Sections</span></h4>
+        <ul>
+          <li><a href="/posts/"><span class="tr">Yazılar</span><span class="en">Writing</span></a></li>
+          <li><a href="/projects/"><span class="tr">Projeler</span><span class="en">Projects</span></a></li>
+          <li><a href="/library/"><span class="tr">Kütüphane</span><span class="en">Library</span></a></li>
+          <li><a href="/about/"><span class="tr">Hakkında</span><span class="en">About</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span class="tr">Bağlantılar</span><span class="en">Elsewhere</span></h4>
+        <ul>
+          {% if site.social.github %}<li><a href="https://github.com/{{ site.social.github }}" rel="me">GitHub</a></li>{% endif %}
+          {% if site.social.linkedin %}<li><a href="https://www.linkedin.com/in/{{ site.social.linkedin }}" rel="me">LinkedIn</a></li>{% endif %}
+          {% if site.author.email %}<li><a href="mailto:{{ site.author.email }}"><span class="tr">E-posta</span><span class="en">Email</span></a></li>{% endif %}
+          <li><a href="/feed.xml">RSS</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span class="tr">Bu site</span><span class="en">This site</span></h4>
+        <ul>
+          <li>Jekyll + GitHub Pages</li>
+          <li>Archivo / Source Serif 4</li>
+          <li><span class="tr">Takip kodu ve çerez yok</span><span class="en">No trackers, no cookies</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footrule">
+      <span>{{ site.author.name }}</span>
+      <span>{{ site.author.location }}</span>
+      <span>&copy; {{ 'now' | date: "%Y" }}</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js" defer></script>

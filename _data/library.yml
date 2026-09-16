@@ -1,0 +1,18 @@
+# ─────────────────────────────────────────────────────────────
+#  KÜTÜPHANE — okuduklarım / izlediklerim
+#
+#  Aşağıdaki bloğun başındaki # işaretlerini silip doldur.
+#  kind   : Kitap / Film / Dizi / Makale / Konuşma  (istediğini yaz)
+#  date   : SEN bitirdiğin tarih — sıralama buna göre
+#  rating : 1-5
+#  note   : tek satır. Asıl okunan kısım burası.
+# ─────────────────────────────────────────────────────────────
+
+# - kind: Kitap
+#   title: "Kitabın adı"
+#   by: "Yazar"
+#   year: 1979
+#   date: 2026-09-10
+#   rating: 4
+#   note: "Kafanda neyi değiştirdi? Tek cümle."
+#   link: ""

@@ -1,0 +1,56 @@
+---
+layout: page
+permalink: /posts/
+title: "Yazılar"
+title_tr: "Yazılar"
+title_en: "Writing"
+nav: posts
+rail_tr: "Arşiv"
+rail_en: "Archive"
+standfirst_tr: "Fizik, yazılım ve arada kalan her şey. Bazıları Türkçe, bazıları İngilizce."
+standfirst_en: "Physics, software and whatever falls between. Some in Turkish, some in English."
+---
+
+{% if site.posts.size > 0 %}
+
+{% assign tr = site.posts | where: "lang", "tr" %}
+{% assign en = site.posts | where: "lang", "en" %}
+<div class="filters" role="group" aria-label="Dil / Language">
+  <button type="button" data-filter="all" aria-pressed="true"><span class="tr">Tümü</span><span class="en">All</span> ({{ site.posts.size }})</button>
+  {% if tr.size > 0 %}<button type="button" data-filter="tr" aria-pressed="false">Türkçe ({{ tr.size }})</button>{% endif %}
+  {% if en.size > 0 %}<button type="button" data-filter="en" aria-pressed="false">English ({{ en.size }})</button>{% endif %}
+</div>
+
+{% assign years = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
+{% for year in years %}
+<section style="margin-top:26px" data-year="{{ year.name }}">
+  <p class="meta" style="margin-bottom:4px">{{ year.name }}</p>
+  <ul class="entries">
+    {% for post in year.items %}
+    <li class="entry" data-lang="{{ post.lang }}">
+      <a href="{{ post.url }}">
+        <span class="when">{{ post.date | date: "%d.%m" }}</span>
+        <span>
+          <h3>{{ post.title }}</h3>
+          {% if post.standfirst %}<p>{{ post.standfirst | strip_html | truncate: 155 }}</p>{% endif %}
+        </span>
+        <span class="marks"><span class="chip lang">{{ post.lang | upcase }}</span></span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endfor %}
+
+<p class="sec-note" style="margin-top:26px">
+  <span class="tr">Takip etmek istersen <a href="/feed.xml">RSS</a> var — bülten yok, kayıt yok.</span>
+  <span class="en">Follow along with <a href="/feed.xml">RSS</a> — no newsletter, no sign-up.</span>
+</p>
+
+{% else %}
+<div class="empty">
+  <h3><span class="tr">Henüz yazı yok.</span><span class="en">Nothing published yet.</span></h3>
+  <p><span class="tr">Yazılar <code>_posts/</code> klasöründe <code>YYYY-AA-GG-baslik.md</code> olarak duruyor. Ön bilgide <code>lang: tr</code> ya da <code>lang: en</code> yazınca dil filtresi kendiliğinden çalışıyor.</span>
+     <span class="en">Posts live in <code>_posts/</code> as <code>YYYY-MM-DD-title.md</code>. Set <code>lang: tr</code> or <code>lang: en</code> and the filter handles itself.</span></p>
+</div>
+{% endif %}

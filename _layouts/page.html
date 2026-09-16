@@ -1,0 +1,26 @@
+---
+layout: default
+---
+<div class="wrap">
+  <div class="shell">
+    <aside class="rail">
+      <div class="rail-sticky">
+        <p class="meta">
+          <span class="tr">{{ page.rail_tr | default: page.title }}</span><span class="en">{{ page.rail_en | default: page.title }}</span>
+          {%- if page.rail_note %}<b>{{ page.rail_note }}</b>{% endif -%}
+        </p>
+      </div>
+    </aside>
+
+    <div>
+      <header class="page-head">
+        <h1 class="title"><span class="tr">{{ page.title_tr | default: page.title }}</span><span class="en">{{ page.title_en | default: page.title }}</span></h1>
+        {% if page.standfirst_tr or page.standfirst_en %}
+        <p class="standfirst"><span class="tr">{{ page.standfirst_tr }}</span><span class="en">{{ page.standfirst_en }}</span></p>
+        {% endif %}
+      </header>
+
+      {{ content }}
+    </div>
+  </div>
+</div>

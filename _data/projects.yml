@@ -1,0 +1,14 @@
+# ─────────────────────────────────────────────────────────────
+#  ÖNE ÇIKAN PROJELER (isteğe bağlı)
+#
+#  Buraya bir şey yazmazsan Projeler sayfası sadece GitHub'dan
+#  çektiği canlı listeyi gösterir — çoğu zaman yeterli.
+#  Bir repoyu öne çıkarmak istersen aşağıdaki bloğu aç:
+# ─────────────────────────────────────────────────────────────
+
+# - name: "SolarSystemSim"
+#   description: "Ne yaptığı ve neden yazdığın — tek cümle."
+#   url: "https://github.com/KemalYigitDemirci/SolarSystemSim"
+#   language: "JavaScript"
+#   year: 2025
+#   status: "Devam ediyor"
